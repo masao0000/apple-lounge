@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git -C \"C:/Users/本多正宗/apple\" push",
+            "shell": "powershell",
+            "if": "Bash(git commit *)",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git push)",
+      "Bash(git push *)"
+    ]
+  }
+}
