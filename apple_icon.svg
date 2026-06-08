@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 145">
+  <defs>
+    <clipPath id="apple-body">
+      <path d="M60,38 C45,24 14,30 8,57 C2,82 12,108 28,120 C40,130 60,133 60,133 C60,133 80,130 92,120 C108,108 118,82 112,57 C106,30 75,24 60,38Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Stem -->
+  <path d="M59,36 Q56,20 62,9" stroke="#6D4C41" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Leaf -->
+  <path d="M60,23 C67,11 83,7 85,9 C77,19 62,21 60,23Z" fill="#4CAF50"/>
+  <line x1="60" y1="23" x2="85" y2="9" stroke="#2E7D32" stroke-width="0.9"/>
+
+  <!-- Apple body -->
+  <g clip-path="url(#apple-body)">
+    <!-- Base fill (covers any micro-gaps) -->
+    <rect x="0" y="0" width="120" height="145" fill="#C0392B"/>
+
+    <!-- ── Triangular facets ── -->
+    <!-- Upper band -->
+    <polygon points="60,38 18,44 60,52"   fill="#922B21"/>
+    <polygon points="60,38 60,52 102,44"  fill="#E8903A"/>
+    <polygon points="18,44 36,62 60,52"   fill="#C0392B"/>
+    <polygon points="60,52 84,62 102,44"  fill="#E86030"/>
+
+    <!-- Left side -->
+    <polygon points="18,44 10,78 36,62"   fill="#7B1818"/>
+    <polygon points="36,62 10,78 20,86"   fill="#B71C1C"/>
+    <polygon points="36,62 20,86 60,86"   fill="#A82020"/>
+
+    <!-- Center upper -->
+    <polygon points="60,52 36,62 60,86"   fill="#D04020"/>
+    <polygon points="60,52 60,86 84,62"   fill="#E05028"/>
+    <polygon points="84,62 60,86 100,86"  fill="#C62828"/>
+
+    <!-- Right side -->
+    <polygon points="102,44 84,62 110,78" fill="#E74C3C"/>
+    <polygon points="84,62 100,86 110,78" fill="#C0392B"/>
+
+    <!-- Lower-left GREEN region -->
+    <polygon points="10,78 20,112 20,86"  fill="#1B5E20"/>
+    <polygon points="20,86 20,112 32,114" fill="#2E7D32"/>
+    <polygon points="20,86 32,114 60,86"  fill="#388E3C"/>
+
+    <!-- Lower center -->
+    <polygon points="60,86 32,114 60,118" fill="#7B1818"/>
+    <polygon points="60,86 60,118 88,114" fill="#6B1818"/>
+    <polygon points="60,86 88,114 100,86" fill="#922B21"/>
+
+    <!-- Lower-right dark region -->
+    <polygon points="100,86 88,114 100,112"  fill="#8B0000"/>
+    <polygon points="100,86 100,112 110,78"  fill="#7B0000"/>
+
+    <!-- Bottom -->
+    <polygon points="32,114 20,112 60,133"  fill="#5D1010"/>
+    <polygon points="32,114 60,133 60,118"  fill="#7B1818"/>
+    <polygon points="60,118 60,133 88,114"  fill="#6B1010"/>
+    <polygon points="88,114 60,133 100,112" fill="#5D0808"/>
+
+    <!-- White mesh outlines -->
+    <g stroke="rgba(255,255,255,0.30)" stroke-width="0.65" fill="none">
+      <polygon points="60,38 18,44 60,52"/>
+      <polygon points="60,38 60,52 102,44"/>
+      <polygon points="18,44 36,62 60,52"/>
+      <polygon points="60,52 84,62 102,44"/>
+      <polygon points="18,44 10,78 36,62"/>
+      <polygon points="36,62 10,78 20,86"/>
+      <polygon points="36,62 20,86 60,86"/>
+      <polygon points="60,52 36,62 60,86"/>
+      <polygon points="60,52 60,86 84,62"/>
+      <polygon points="84,62 60,86 100,86"/>
+      <polygon points="102,44 84,62 110,78"/>
+      <polygon points="84,62 100,86 110,78"/>
+      <polygon points="10,78 20,112 20,86"/>
+      <polygon points="20,86 20,112 32,114"/>
+      <polygon points="20,86 32,114 60,86"/>
+      <polygon points="60,86 32,114 60,118"/>
+      <polygon points="60,86 60,118 88,114"/>
+      <polygon points="60,86 88,114 100,86"/>
+      <polygon points="100,86 88,114 100,112"/>
+      <polygon points="100,86 100,112 110,78"/>
+      <polygon points="32,114 20,112 60,133"/>
+      <polygon points="32,114 60,133 60,118"/>
+      <polygon points="60,118 60,133 88,114"/>
+      <polygon points="88,114 60,133 100,112"/>
+    </g>
+  </g>
+</svg>

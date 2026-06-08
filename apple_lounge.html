@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Lounge – 沼高ラーニングコモンズ</title>
+  <link rel="icon" href="リンゴアイコン4.png" type="image/png">
+  <style>
+    :root {
+      --red:      #C0392B;
+      --red-lt:   #E8604C;
+      --green:    #2E7D32;
+      --green-lt: #4CAF50;
+      --cream:    #FDF8F2;
+      --tan:      #F5ECD7;
+      --brown:    #795548;
+      --gold:     #E6930A;
+      --dark:     #2C2C2C;
+      --gray:     #666;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--dark);
+      padding: 14px 0;
+    }
+    .nav-logo img { width: 30px; height: 30px; }
+    .nav-logo strong { font-size: 17px; letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--gray);
+      font-size: 14px; font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.55) 100%),
+        url('hero.jpg') center center / cover no-repeat;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+.hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18); color: #fff;
+      border: 1px solid rgba(255,255,255,0.45);
+      backdrop-filter: blur(6px);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      padding: 5px 16px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-size: clamp(52px, 9vw, 96px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    #hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #81C784, #A5D6A7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 19px);
+      color: rgba(255,255,255,0.88);
+      margin: 20px auto 40px;
+      max-width: 640px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    }
+    .hero-cta {
+      display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      padding: 14px 36px; border-radius: 50px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-outline { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.7); backdrop-filter: blur(4px); }
+    .scroll-hint {
+      position: absolute; bottom: 32px;
+      font-size: 12px; color: rgba(255,255,255,0.7);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      letter-spacing: 0.1em;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gray), transparent);
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 96px 5%; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      color: var(--red); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 38px); font-weight: 900;
+      line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-desc { font-size: 16px; color: var(--gray); max-width: 640px; }
+
+    /* ── ABOUT ── */
+    #about { background: #fff; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+      max-width: 1100px; margin: 56px auto 0;
+    }
+    .about-text p { color: var(--gray); font-size: 15.5px; margin-top: 16px; }
+    .about-text strong { color: var(--dark); }
+    .about-visual {
+      background: var(--tan);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 30%, rgba(192,57,43,0.08), transparent 60%);
+    }
+    .big-apple { width: 160px; height: 160px; display: block; margin: 0 auto 20px; }
+    .about-visual p {
+      font-size: 14px; color: var(--brown);
+      font-weight: 600; letter-spacing: 0.06em;
+      position: relative; z-index: 1;
+    }
+    .stats-row {
+      display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;
+    }
+    .stat-box {
+      flex: 1; min-width: 90px;
+      background: var(--cream); border-radius: 16px;
+      padding: 18px 12px; text-align: center;
+    }
+    .stat-num { font-size: 26px; font-weight: 900; color: var(--red); }
+    .stat-lbl { font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+    /* ── GOALS ── */
+    #goals { background: var(--cream); }
+    .goals-header { max-width: 1100px; margin: 0 auto 56px; }
+    .goals-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 20px; max-width: 1100px; margin: 0 auto;
+    }
+    .goal-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      border-top: 4px solid transparent;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .goal-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+    .goal-card:nth-child(1) { border-color: var(--red); }
+    .goal-card:nth-child(2) { border-color: var(--green); }
+    .goal-card:nth-child(3) { border-color: var(--gold); }
+    .goal-card:nth-child(4) { border-color: #1565C0; }
+    .goal-card:nth-child(5) { border-color: #7B1FA2; }
+    .goal-icon { font-size: 36px; margin-bottom: 14px; }
+    .goal-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; }
+    .goal-card p { font-size: 13.5px; color: var(--gray); line-height: 1.65; }
+
+    /* ── HOW ── */
+    #how { background: var(--tan); }
+    .how-header { max-width: 900px; margin: 0 auto 56px; }
+    .timeline { max-width: 780px; margin: 0 auto; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 27px; top: 0; bottom: 0;
+      width: 2px; background: rgba(192,57,43,0.2);
+    }
+    .tl-item {
+      display: flex; gap: 28px; align-items: flex-start;
+      margin-bottom: 40px; position: relative;
+    }
+    .tl-dot {
+      width: 54px; height: 54px; flex-shrink: 0;
+      background: var(--red); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; position: relative; z-index: 1;
+      box-shadow: 0 4px 12px rgba(192,57,43,0.35);
+    }
+    .tl-content { padding-top: 10px; }
+    .tl-content h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .tl-content p { font-size: 14.5px; color: var(--gray); }
+    .tl-tag {
+      display: inline-block; margin-top: 10px;
+      background: var(--red); color: #fff;
+      font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px;
+    }
+
+    /* ── ACTIVITIES ── */
+    #activities { background: #fff; }
+    .act-header { max-width: 1100px; margin: 0 auto 56px; }
+    .act-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .act-card {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .act-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(0,0,0,0.12); }
+    .act-thumb {
+      height: 150px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 60px;
+    }
+    .act-card:nth-child(1) .act-thumb { background: linear-gradient(135deg, #FFCCBC, #FF8A65); }
+    .act-card:nth-child(2) .act-thumb { background: linear-gradient(135deg, #C8E6C9, #81C784); }
+    .act-card:nth-child(3) .act-thumb { background: linear-gradient(135deg, #FFF9C4, #FFD54F); }
+    .act-card:nth-child(4) .act-thumb { background: linear-gradient(135deg, #BBDEFB, #64B5F6); }
+    .act-body { padding: 22px 20px; background: #fff; }
+    .act-body h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .act-body p { font-size: 13.5px; color: var(--gray); }
+
+    /* ── SCHEDULE ── */
+    #schedule { background: var(--cream); }
+    .sched-header { max-width: 1100px; margin: 0 auto 56px; }
+    .sched-table {
+      max-width: 720px; margin: 0 auto;
+      border-collapse: collapse; width: 100%;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .sched-table th {
+      background: var(--red); color: #fff;
+      padding: 14px 20px; text-align: left; font-size: 14px;
+    }
+    .sched-table td {
+      padding: 14px 20px; font-size: 14px;
+      border-bottom: 1px solid #EEE;
+      background: #fff;
+    }
+    .sched-table tr:last-child td { border-bottom: none; }
+    .sched-table tr:nth-child(even) td { background: #FAFAFA; }
+    .phase-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px;
+    }
+    .phase-1 { background: #FFECB3; color: #E65100; }
+    .phase-2 { background: #C8E6C9; color: #1B5E20; }
+    .phase-3 { background: #BBDEFB; color: #0D47A1; }
+
+    /* ── JOIN ── */
+    #join {
+      background: linear-gradient(135deg, var(--red) 0%, #7B241C 100%);
+      color: #fff; text-align: center;
+    }
+    #join .section-label { color: rgba(255,255,255,0.65); }
+    #join .section-title { color: #fff; margin: 0 auto 16px; }
+    #join .section-desc { color: rgba(255,255,255,0.8); margin: 0 auto 48px; }
+    .join-cards {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .join-card {
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 20px; padding: 28px 32px; min-width: 180px;
+      transition: background 0.2s;
+    }
+    .join-card:hover { background: rgba(255,255,255,0.22); }
+    .join-card .icon { font-size: 32px; margin-bottom: 10px; }
+    .join-card h3 { font-size: 15px; font-weight: 800; }
+    .join-card p { font-size: 13px; opacity: 0.8; margin-top: 6px; }
+    .btn-white { background: #fff; color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      padding: 44px 5%; text-align: center;
+    }
+    footer .foot-logo { font-size: 22px; color: #fff; font-weight: 900; margin-bottom: 8px; }
+    footer p { font-size: 13px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+      .timeline::before { display: none; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="リンゴアイコン4.png" alt="Apple Lounge icon">
+    <strong>Apple Lounge</strong>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">プロジェクトとは</a></li>
+    <li><a href="#goals">5つのテーマ</a></li>
+    <li><a href="#how">仕組み</a></li>
+    <li><a href="#activities">探究活動</a></li>
+    <li><a href="#schedule">スケジュール</a></li>
+    <li><a href="#join">参加する</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <span class="hero-badge">沼高 × 地域農業 実証実験プロジェクト</span>
+  <h1>Apple<br><em>Lounge</em></h1>
+  <p class="hero-sub">
+    リンゴでつくる、沼高の新しい居場所・探究・地域連携プロジェクト。<br>
+    1階ラーニングコモンズに、食べて・話して・学べる小さな場所が生まれます。
+  </p>
+  <div class="hero-cta">
+    <a href="#about" class="btn btn-primary">プロジェクトを知る</a>
+    <a href="#join"  class="btn btn-outline">参加したい</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p class="section-label">About</p>
+      <h2 class="section-title">昼休みの15分が、<br>地域をつなぐ。</h2>
+      <p>Apple Loungeは、1階ラーニングコモンズにリンゴなどの野菜・果物を置き、生徒が昼休みに気軽に立ち寄り、食べ、休み、話し、地域農業を知ることができる小さな居場所をつくる実証実験です。</p>
+      <p>単なる無料配布ではなく、<strong>居場所づくり・地産地消・食品ロス削減・地域農業理解・探究活動</strong>を一体化した校内プロジェクトとして行います。</p>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">5</div>
+          <div class="stat-lbl">テーマの統合</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1F</div>
+          <div class="stat-lbl">LC設置</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">毎日</div>
+          <div class="stat-lbl">昼休みオープン</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual fade-in">
+      <img class="big-apple" src="リンゴアイコン4.png" alt="Apple">
+      <p>1階 ラーニングコモンズ</p>
+      <p style="margin-top:8px; font-size:13px; opacity:0.75;">昼休み・毎日オープン</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GOALS ── -->
+<section id="goals">
+  <div class="goals-header fade-in">
+    <p class="section-label">5 Themes</p>
+    <h2 class="section-title">5つのテーマを一体化</h2>
+    <p class="section-desc">このプロジェクトは単なる食の提供ではなく、5つの意義を持つ複合的な取り組みです。</p>
+  </div>
+  <div class="goals-grid">
+    <div class="goal-card fade-in">
+      <div class="goal-icon">🏡</div>
+      <h3>居場所づくり</h3>
+      <p>ふらっと立ち寄れる、気軽に話せる。ラーニングコモンズを「第三の居場所」に変える温かいコミュニティを育てます。</p>
+    </div>
+    <div class="goal-card fade-in">
+      <div class="goal-icon">🌱</div>
+      <h3>地産地消</h3>
+      <p>地域の農家から直接届く新鮮な作物。輸送コストを減らし、地元の恵みを身近に感じることで、地域経済を応援します。</p>
+    </div>
+    <div class="goal-card fade-in">
+      <div class="goal-icon">♻️</div>
+      <h3>食品ロス削減</h3>
+      <p>形が不揃いで市場に出せない「わけあり農産物」を活用。廃棄されるはずだった食材に新たな命を吹き込みます。</p>
+    </div>
+    <div class="goal-card fade-in">
+      <div class="goal-icon">🚜</div>
+      <h3>地域農業理解</h3>
+      <p>農家さんのメッセージカードや農場見学を通じて、生産者の顔が見える関係を築き、農業の魅力を伝えます。</p>
+    </div>
+    <div class="goal-card fade-in">
+      <div class="goal-icon">🔬</div>
+      <h3>探究活動</h3>
+      <p>データ収集・分析・発表まで一貫して行う探究学習の場。参加者のフィードバックをもとに継続的に改善します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW ── -->
+<section id="how">
+  <div class="how-header fade-in">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">どうやって動いている？</h2>
+    <p class="section-desc">農家・学校・生徒が協力し、シンプルな仕組みで持続可能な循環をつくります。</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item fade-in">
+      <div class="tl-dot">🚜</div>
+      <div class="tl-content">
+        <h3>地域農家から届く</h3>
+        <p>近隣の農家さんから、規格外・余剰のリンゴや野菜を提供いただきます。形が不揃いでも、味は本物。</p>
+        <span class="tl-tag">地産地消 × 食品ロス削減</span>
+      </div>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot">📦</div>
+      <div class="tl-content">
+        <h3>LCに設置・準備</h3>
+        <p>プロジェクトメンバーが毎朝セッティング。農家さんのプロフィールカードも一緒に展示します。</p>
+        <span class="tl-tag">居場所づくり × 農業理解</span>
+      </div>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot">🍎</div>
+      <div class="tl-content">
+        <h3>昼休みにオープン</h3>
+        <p>誰でも自由に立ち寄り、食べて、おしゃべりできます。声をかけやすい雰囲気づくりも大切にします。</p>
+        <span class="tl-tag">居場所づくり</span>
+      </div>
+    </div>
+    <div class="tl-item fade-in">
+      <div class="tl-dot">📊</div>
+      <div class="tl-content">
+        <h3>データを集めて探究</h3>
+        <p>利用者数・アンケート・フィードバックを記録し、改善につなげます。探究の成果は発表会で共有。</p>
+        <span class="tl-tag">探究活動</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACTIVITIES ── -->
+<section id="activities">
+  <div class="act-header fade-in">
+    <p class="section-label">Activities</p>
+    <h2 class="section-title">探究・体験プログラム</h2>
+    <p class="section-desc">食べるだけじゃない。農業・環境・コミュニティをテーマにした探究活動を展開します。</p>
+  </div>
+  <div class="act-grid">
+    <div class="act-card fade-in">
+      <div class="act-thumb">🧑‍🌾</div>
+      <div class="act-body">
+        <h3>農家訪問プログラム</h3>
+        <p>実際に農場を訪問し、生産現場を体験。農家さんとの対話を通じて、食と農業への理解を深めます。</p>
+      </div>
+    </div>
+    <div class="act-card fade-in">
+      <div class="act-thumb">📈</div>
+      <div class="act-body">
+        <h3>食品ロス調査レポート</h3>
+        <p>配布量・廃棄量・参加者数などのデータを分析し、食品ロス削減の効果を定量的に検証します。</p>
+      </div>
+    </div>
+    <div class="act-card fade-in">
+      <div class="act-thumb">🍳</div>
+      <div class="act-body">
+        <h3>農産物レシピ開発</h3>
+        <p>余剰農産物を使ったオリジナルレシピを考案・試食。地域の味を活かした新しい食文化を提案します。</p>
+      </div>
+    </div>
+    <div class="act-card fade-in">
+      <div class="act-thumb">🗣️</div>
+      <div class="act-body">
+        <h3>成果発表・地域共有</h3>
+        <p>探究活動の成果を学校内・地域へ発表。農家・行政・地域住民に向けて、プロジェクトの価値を届けます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ── -->
+<section id="schedule">
+  <div class="sched-header fade-in">
+    <p class="section-label">Schedule</p>
+    <h2 class="section-title">プロジェクト スケジュール</h2>
+    <p class="section-desc">準備・実施・分析の3フェーズで、着実に実証実験を進めます。</p>
+  </div>
+  <div class="fade-in">
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th>時期</th>
+          <th>フェーズ</th>
+          <th>主な活動</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>4 – 5月</td>
+          <td><span class="phase-tag phase-1">準備期</span></td>
+          <td>農家との連携構築・設置場所調整・メンバー募集</td>
+        </tr>
+        <tr>
+          <td>6 – 9月</td>
+          <td><span class="phase-tag phase-2">実証期</span></td>
+          <td>毎日のLC設置・利用データ収集・農家訪問</td>
+        </tr>
+        <tr>
+          <td>10月</td>
+          <td><span class="phase-tag phase-2">実証期</span></td>
+          <td>中間振り返り・改善策検討・レシピ開発</td>
+        </tr>
+        <tr>
+          <td>11 – 12月</td>
+          <td><span class="phase-tag phase-3">分析・発表期</span></td>
+          <td>データ分析・探究レポート作成・成果発表会</td>
+        </tr>
+        <tr>
+          <td>1 – 3月</td>
+          <td><span class="phase-tag phase-3">分析・発表期</span></td>
+          <td>成果共有・次年度への引き継ぎ・継続可能性検討</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── JOIN ── -->
+<section id="join">
+  <p class="section-label">Join Us</p>
+  <h2 class="section-title">一緒につくりませんか？</h2>
+  <p class="section-desc">
+    Apple Loungeは、関わり方は自由です。<br>
+    食べに来るだけでも、運営に参加するのも大歓迎。
+  </p>
+  <div class="join-cards">
+    <div class="join-card">
+      <div class="icon">🍎</div>
+      <h3>立ち寄る</h3>
+      <p>昼休みにふらっと来て<br>食べるだけでOK</p>
+    </div>
+    <div class="join-card">
+      <div class="icon">🤝</div>
+      <h3>運営に参加</h3>
+      <p>設置・アンケート・<br>探究活動を一緒に</p>
+    </div>
+    <div class="join-card">
+      <div class="icon">🚜</div>
+      <h3>農家・地域の方</h3>
+      <p>農産物提供・農場見学<br>など連携歓迎</p>
+    </div>
+  </div>
+  <a href="mailto:t0um0r0k0si0325@gmail.com" class="btn btn-white">
+    参加・お問い合わせはこちら →
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-logo">🍎 Apple Lounge</div>
+  <p>沼高ラーニングコモンズ 実証実験プロジェクト</p>
+  <p style="margin-top: 16px; font-size: 12px;">© 2025 Apple Lounge Project</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--red)' : '';
+    });
+  });
+</script>
+</body>
+</html>
